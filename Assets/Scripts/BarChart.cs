@@ -9,6 +9,7 @@ public class BarChart : MonoBehaviour {
 	public Bar barPrefab;
 	public int[] InputValues;
 	List<Bar> bars = new List<Bar>(); //List to store the Bars
+	public string[] labels; //Input labels
 
 	float ChartHeight;
 
@@ -29,6 +30,13 @@ public class BarChart : MonoBehaviour {
 			RectTransform rt = newBar.bar.GetComponent<RectTransform> ();
 			float normalizeVal = (float)vals [i] / (float)maxVal;
 			rt.sizeDelta = new Vector2 (rt.sizeDelta.x, ChartHeight * normalizeVal);
+
+			if (labels.Length <= i) { //check whether enough labels are available for each bar
+				newBar.label.text = "UNDEFINED";
+			} else {
+				newBar.label.text = labels[i];
+			}
+//			newBar.barValue.text = ;
 		}
 	}
 }
