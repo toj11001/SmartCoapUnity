@@ -199,6 +199,7 @@ MonoBehaviour:
   labels:
   - Planes
   - Cars
+  - Boats
   colors:
   - {r: 1, g: 0, b: 0, a: 0}
   - {r: 0, g: 0.31308326, b: 0.9264706, a: 0}
@@ -369,7 +370,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 970090038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 478.5, y: 263.5, z: 0}
+  m_LocalPosition: {x: 374.5, y: 255.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 163996939}
