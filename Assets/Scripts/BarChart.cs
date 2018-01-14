@@ -32,18 +32,34 @@ public class BarChart : MonoBehaviour {
 			RectTransform rt = newBar.bar.GetComponent<RectTransform> ();
 			float normalizeVal = (float)vals [i] / (float)maxVal;
 			rt.sizeDelta = new Vector2 (rt.sizeDelta.x, ChartHeight * normalizeVal);
-			//set bar color
-//			newBar.bar.color = Color.cyan;//colors [i % colors.Length];
-			 
-			//setting the label
-			if (labels.Length <= i) { //check whether enough labels are available for each bar
+
+            //setting the label
+            if (labels.Length <= i) { //check whether enough labels are available for each bar
 				newBar.label.text = "UNDEFINED";
 			} else {
 				newBar.label.text = labels[i];
-			}
 
-			//set value label
-			newBar.barValue.text = vals[i].ToString();
+                //set bar color
+                //newBar.bar.GetComponent<Color>() = Color.cyan;//colors [i % colors.Length];
+                Color col;
+                col = colors[i % colors.Length];
+                col[3] = 1.0F; // Making sure that alpha is at 1,
+                newBar.bar.GetComponent<Image>().color = col;
+                Debug.Log(col);
+                //if (newBar.label.text == "Planes")
+                //    newBar.bar.GetComponent<Image>().color = new Color32(255, 0, 0, 100);
+                //else if (newBar.label.text == "Cars")
+                //{
+                //    newBar.bar.GetComponent<Image>().color = new Color32(0, 255, 0, 100);
+                //}
+                //else if (newBar.label.text == "Boats")
+                //{
+                //    newBar.bar.GetComponent<Image>().color = new Color32(0, 0, 255, 100);
+                //}
+            }
+
+            //set value label
+            newBar.barValue.text = vals[i].ToString();
 			if (rt.sizeDelta.y < 30f) {
 				newBar.barValue.GetComponent<RectTransform>().pivot = new Vector2 (0.5f, 0f);
 				newBar.barValue.GetComponent<RectTransform> ().anchoredPosition = Vector2.zero;  
