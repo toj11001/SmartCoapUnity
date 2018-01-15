@@ -31,7 +31,8 @@ public class UiManager : MonoBehaviour
     void Start()
 	{
         coapManager.ResponseReceivedHandler += ResponseReceived;
-
+        Singleton.GetInstance().LightStorage = new int[10];
+        Singleton.GetInstance().TemperatureStorage = new int[10];
     }
 
 
@@ -70,10 +71,12 @@ public class UiManager : MonoBehaviour
         if (e.Resource == "light")
         {
             label_light.text = e.Resource + " : " + e.Data;
+            Singleton.GetInstance().LightStorage[i++] = int.Parse(e.Data);
         }
         else if (e.Resource == "temperature")
         {
             label_temp.text = e.Resource+ " : " + e.Data;
+            Singleton.GetInstance().TemperatureStorage[i++] = int.Parse(e.Data);
         }
         else
         {
