@@ -1,13 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using Unit
+using UnityEngine.SceneManagement;
 
 public class ButtonStart : MonoBehaviour {
 
-	public void ChangeScene(){
-		UnityEngine.SceneManagement.SceneManager.LoadScene ("_scene");
+	public void Change2Light(){
+		SceneManager.LoadScene ("_scene");
 	}
+	public void Change2Temp(){
+		SceneManager.LoadScene ("TempChart");
+	}
+	public void Change2Home(){
+		SceneManager.LoadScene ("StartScreen");
+	}
+
 	// Use this for initialization
 	void Start () {
 		
