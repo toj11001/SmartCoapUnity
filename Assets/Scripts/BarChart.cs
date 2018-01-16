@@ -19,14 +19,16 @@ public class BarChart : MonoBehaviour {
 		ChartHeight = Screen.height + GetComponent<RectTransform> ().sizeDelta.y;
 
 		//Display the graph
-		DisplayGraph(InputValues);
+		if (label == "T") //check whether we are in the temperature bar graph scene	
+			DisplayGraph (Singleton.GetInstance().TemperatureStorage);
+		else
+			DisplayGraph (Singleton.GetInstance ().LightStorage);
 	
 	}
-
-    private void Update()
-    {
-        
-    }
+//	private IEnumerator Update()
+//    {
+//		yield return new WaitForSeconds(6); //wait 6 sec   
+//    }
 
     void DisplayGraph(int[] vals){
 		int maxVal = vals.Max ();
