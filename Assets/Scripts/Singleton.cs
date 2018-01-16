@@ -5,10 +5,12 @@ using UnityEngine;
 public class Singleton {
 	private static Singleton instance;
 
-	public float latitudeGps {get; set;}
-	public float longitudeGps { get; set;}
+    public int[] TemperatureStorage { get; set; }
+    public int[] LightStorage { get; set; }
+    public int lastTemperaturePointer = 0;
+    public int lastLightPointer = 0;
 
-	private Singleton(){}
+    private Singleton(){}
 
 	public static Singleton GetInstance() {
 		
