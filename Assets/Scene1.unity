@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 259010631}
   - component: {fileID: 259010630}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: ChangeView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ RectTransform:
   m_Children:
   - {fileID: 731375598}
   m_Father: {fileID: 510822858}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -189,7 +189,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 790132191}
-        m_MethodName: OnButton2Pressed
+        m_MethodName: OnChangeViewPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -378,12 +378,12 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 510822854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 540, y: 960, z: 0}
+  m_LocalPosition: {x: 1000, y: 700, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1506835403}
-  - {fileID: 259010629}
   - {fileID: 1043333130}
+  - {fileID: 259010629}
   - {fileID: 613993467}
   - {fileID: 1470840871}
   - {fileID: 1740735444}
@@ -576,7 +576,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Get status Light
+  m_Text: Change View
 --- !u!222 &731375600
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -856,7 +856,7 @@ GameObject:
   - component: {fileID: 1043333132}
   - component: {fileID: 1043333131}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: LedOff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -869,17 +869,17 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1043333129}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8, y: -54, z: 0}
+  m_LocalPosition: {x: 120, y: 408, z: 0}
   m_LocalScale: {x: 2.5843556, y: 2.584356, z: 2.584356}
   m_Children:
   - {fileID: 959991663}
   m_Father: {fileID: 510822858}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8, y: -54}
-  m_SizeDelta: {x: 207, y: 73}
+  m_AnchoredPosition: {x: 120, y: 408}
+  m_SizeDelta: {x: 74, y: 74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1043333131
 MonoBehaviour:
@@ -900,8 +900,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.86166334, g: 1, b: 0.5441177, a: 1}
+    m_NormalColor: {r: 0.9843137, g: 0.07058824, b: 0.18431373, a: 1}
+    m_HighlightedColor: {r: 0.9882353, g: 0.4392157, b: 0.50980395, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -921,7 +921,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 790132191}
-        m_MethodName: OnButton3Pressed
+        m_MethodName: OnLedOnPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1117,7 +1117,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1470840868}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -140, y: -740, z: 0}
+  m_LocalPosition: {x: -140, y: -480, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 510822858}
@@ -1140,7 +1140,7 @@ GameObject:
   - component: {fileID: 1506835405}
   - component: {fileID: 1506835404}
   m_Layer: 5
-  m_Name: Button
+  m_Name: LedOn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1153,7 +1153,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1506835402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 408, z: 0}
+  m_LocalPosition: {x: -120, y: 408, z: 0}
   m_LocalScale: {x: 2.5843556, y: 2.584356, z: 2.584356}
   m_Children:
   - {fileID: 898260513}
@@ -1162,8 +1162,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 408}
-  m_SizeDelta: {x: 208, y: 74}
+  m_AnchoredPosition: {x: -120, y: 408}
+  m_SizeDelta: {x: 74, y: 74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1506835404
 MonoBehaviour:
@@ -1184,8 +1184,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.86166334, g: 1, b: 0.5441177, a: 1}
+    m_NormalColor: {r: 0.15294118, g: 0.9098039, b: 0.2, a: 1}
+    m_HighlightedColor: {r: 0.49019608, g: 0.94509804, b: 0.5176471, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1205,7 +1205,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 790132191}
-        m_MethodName: OnButtonPressed
+        m_MethodName: OnLedOnPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1274,7 +1274,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1740735443}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -140, y: -960, z: 0}
+  m_LocalPosition: {x: -140, y: -700, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 510822858}

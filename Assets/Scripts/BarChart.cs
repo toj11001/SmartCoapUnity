@@ -22,7 +22,12 @@ public class BarChart : MonoBehaviour {
 	
 	}
 
-	void DisplayGraph(int[] vals){
+    private void Update()
+    {
+        
+    }
+
+    void DisplayGraph(int[] vals){
 		int maxVal = vals.Max ();
 
 		for (int i = 0; i < vals.Length; i++) {

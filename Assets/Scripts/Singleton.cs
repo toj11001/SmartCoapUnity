@@ -7,6 +7,8 @@ public class Singleton {
 
     public int[] TemperatureStorage { get; set; }
     public int[] LightStorage { get; set; }
+    public int lastTemperaturePointer = 0;
+    public int lastLightPointer = 0;
 
     private Singleton(){}
 
