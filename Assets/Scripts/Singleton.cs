@@ -7,18 +7,24 @@ public class Singleton {
 
     public int[] TemperatureStorage { get; set; }
     public int[] LightStorage { get; set; }
-    public int lastTemperaturePointer = 0;
-    public int lastLightPointer = 0;
+    public int LastTemperaturePointer { get; set; }
+    public int LastLightPointer { get; set; }
 
     private Singleton(){}
 
 	public static Singleton GetInstance() {
 		
-			if (instance == null)
-			{
-				instance = new Singleton();
-			}
-			return instance;
+		if (instance == null)
+		{
+            instance = new Singleton
+            {
+                LastTemperaturePointer = 0,
+                LastLightPointer = 0
+            };
+
+        }
+
+		return instance;
 
 	}
 

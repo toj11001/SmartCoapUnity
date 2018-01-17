@@ -5,14 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene1.unity
     guid: 90ce6b99837b1f24aa3647e5f1f4cee7
   - enabled: 1
     path: Assets/StartScreen.unity
     guid: 6f60f8e6f62fb487c844d9a64d01da0a
   - enabled: 1
-    path: Assets/_scene.unity
+    path: Assets/LightChart.unity
     guid: 91f471479cc9c44289f77c785d401828
   - enabled: 1
     path: Assets/TempChart.unity

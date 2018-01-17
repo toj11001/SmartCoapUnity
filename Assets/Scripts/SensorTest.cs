@@ -22,11 +22,12 @@ public class SensorTest : MonoBehaviour {
 	public IEnumerator TestLight()
     {
         string uri;
+        yield return new WaitForSeconds(0.5f); // Check if Responses are colliding -> CONFIRMED
         for (; ; )
         {
             uri = coapManager.GetUri("147.83.118.80", "light");
             coapManager.DoGet(uri);
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(1);
         }      
     }
 
@@ -39,7 +40,7 @@ public class SensorTest : MonoBehaviour {
         {
             uri = coapManager.GetUri("147.83.118.80", "temperature");
             coapManager.DoGet(uri);
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(1);
         }
     }
 

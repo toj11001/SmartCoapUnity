@@ -12,34 +12,45 @@ public class BarChart : MonoBehaviour {
 	public string[] labels;	//Input labels
 	public Color[] colors; 	//Input Colors
 	public string label;	//find out which scene runs
+    private int[] testArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-	float ChartHeight;
+    float ChartHeight;
 
 	void Start () {
 		ChartHeight = Screen.height + GetComponent<RectTransform> ().sizeDelta.y;
-
-		//Display the graph
-		if (label == "T") //check whether we are in the temperature bar graph scene	
-			DisplayGraph (Singleton.GetInstance().TemperatureStorage);
+        int p = 0;
+        //Display the graph
+        if (label == "T") //check whether we are in the temperature bar graph scene
+        {
+            p = Singleton.GetInstance().LastTemperaturePointer + 1;
+            //DisplayGraph(Singleton.GetInstance().TemperatureStorage, p);
+            DisplayGraph(testArray, p);
+        }
 		else
-			DisplayGraph (Singleton.GetInstance ().LightStorage);
-	
-	}
+        {
+            p = Singleton.GetInstance().LastLightPointer + 1;
+            //DisplayGraph(Singleton.GetInstance().LightStorage, p);
+            DisplayGraph(testArray, p);
+        }
+
+    }
 //	private IEnumerator Update()
 //    {
 //		yield return new WaitForSeconds(6); //wait 6 sec   
 //    }
 
-    void DisplayGraph(int[] vals){
+    void DisplayGraph(int[] vals, int initialPointer){
+        int p = 0;
 		int maxVal = vals.Max ();
 
 		for (int i = 0; i < vals.Length; i++) {
+            p = (i + initialPointer) % vals.Length;
 			Bar newBar = Instantiate (barPrefab) as Bar; 
 			newBar.transform.SetParent (transform);
 
 			//size bar
 			RectTransform rt = newBar.bar.GetComponent<RectTransform> ();
-			float normalizeVal = (float)vals [i] / (float)maxVal;
+			float normalizeVal = (float)vals [p] / (float)maxVal;
 			rt.sizeDelta = new Vector2 (rt.sizeDelta.x, ChartHeight * normalizeVal);
 
 			//set bar color
