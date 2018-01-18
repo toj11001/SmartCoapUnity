@@ -37,7 +37,7 @@ public class BarChart : MonoBehaviour {
             DisplayGraph(Singleton.GetInstance().LightStorage, p);
             // DisplayGraph(testArray, p);
         } 
-		StartCoroutine (waitTimeSec (6));
+		StartCoroutine (waitTimeSec (1));
     }
 
 	private IEnumerator waitTimeSec (int _s){
