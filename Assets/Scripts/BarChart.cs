@@ -42,20 +42,23 @@ public class BarChart : MonoBehaviour {
 
 	private IEnumerator waitTimeSec (int _s){
 		float normalizeVal;
-		int ptr;
+		int ptr, valUpd;
 		yield return new WaitForSeconds(_s); //wait _s sec
 
 		//update the latest element
 		//Checker whether temp or light sensor and normalize value
 		if (T){
 			ptr = Singleton.GetInstance ().LastTemperaturePointer;
-			normalizeVal = (float)Singleton.GetInstance().TemperatureStorage[ptr] / (float)maxVal;
+			valUpd = Singleton.GetInstance().TemperatureStorage[ptr];
+			normalizeVal = (float)valUpd / (float)maxVal;
 		}
 		else{
 			ptr = Singleton.GetInstance().LastLightPointer;
-			normalizeVal = (float)Singleton.GetInstance().LightStorage[ptr] / (float)maxVal;
+			valUpd = Singleton.GetInstance().LightStorage[ptr] ;
+			normalizeVal = (float)valUpd / (float)maxVal;
 		}
 		
+		bars[ptr].barValue.text = valUpd.ToString();
 		RectTransform rt = bars[ptr].bar.GetComponent<RectTransform> ();
 		rt.sizeDelta = new Vector2 (rt.sizeDelta.x, ChartHeight * normalizeVal);
 		StartCoroutine(waitTimeSec(6));
