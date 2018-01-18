@@ -11,14 +11,15 @@ public class BarChart : MonoBehaviour {
 	List<Bar> bars = new List<Bar>(); //List to store the Bars
 	public string[] labels;	//Input labels
 	public Color[] colors; 	//Input Colors
-	public string label;	//find out which scene runs
-    private int[] testArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	public string label;    //find out which scene runs
 
+    private const int maxVal = 50;
+
+    private int[] testArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	private int p = 0;
 	private int index = 0;
-	private int maxVal;
-	private bool T; 	//boolean to check whether temp or light sensor
-    float ChartHeight;
+    private bool T;     //boolean to check whether temp or light sensor
+    private float ChartHeight;
 
 	void Start () {
         ChartHeight = Screen.height + GetComponent<RectTransform>().sizeDelta.y;
@@ -64,6 +65,8 @@ public class BarChart : MonoBehaviour {
 
     private IEnumerator loopExecutor()
     {
+        float normalizedValue;
+        int ptr, updatedValue;
         bool newUpdate = false;
         ChartHeight = Screen.height + GetComponent<RectTransform>().sizeDelta.y;
         //Display the graph
@@ -99,13 +102,41 @@ public class BarChart : MonoBehaviour {
                     Singleton.GetInstance().isLightUpdated = false;
                 }
             }
+            if (newUpdate && T)
+            {
+                // pull from Singleton
+                ptr = Singleton.GetInstance().LastTemperaturePointer;
+                updatedValue = Singleton.GetInstance().TemperatureStorage[ptr];
+                // Normalize
+                normalizedValue = (float)updatedValue / (float)maxVal;
+                // Draw the new bar
+                bars[ptr].barValue.text = updatedValue.ToString();
+                RectTransform rt = bars[ptr].bar.GetComponent<RectTransform>();
+                rt.sizeDelta = new Vector2(rt.sizeDelta.x, ChartHeight * normalizedValue);
+            }
+            else if (newUpdate && !T)
+            {
+                ptr = Singleton.GetInstance().LastLightPointer;
+                updatedValue = Singleton.GetInstance().LightStorage[ptr];
+                normalizedValue = (float)updatedValue / (float)maxVal;
+                bars[ptr].barValue.text = updatedValue.ToString();
+                RectTransform rt = bars[ptr].bar.GetComponent<RectTransform>();
+                rt.sizeDelta = new Vector2(rt.sizeDelta.x, ChartHeight * normalizedValue);
+            }
+            else
+            {
+                //Nothing to update
+            }
+            
+            
+            
             yield return new WaitForSeconds(0.5f); // this has to go faster than Sensor Updates
         }
     }
 
     void DisplayGraph(int[] vals, int initialPointer){
         int p = 0;
-		maxVal = vals.Max ();
+		//maxVal = vals.Max ();
 
 		for (int i = 0; i < vals.Length; i++) {
             p = (i + initialPointer) % vals.Length;
