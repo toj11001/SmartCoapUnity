@@ -128,9 +128,7 @@ public class BarChart : MonoBehaviour {
                 //Nothing to update
             }
             
-            
-            
-            yield return new WaitForSeconds(0.5f); // this has to go faster than Sensor Updates
+            yield return new WaitForSeconds(0.1f); // this has to go faster than Sensor Updates
         }
     }
 
