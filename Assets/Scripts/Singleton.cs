@@ -18,6 +18,8 @@ public class Singleton {
 		{
             instance = new Singleton
             {
+                TemperatureStorage = new int[10],
+                LightStorage = new int[10],
                 LastTemperaturePointer = 0,
                 LastLightPointer = 0
             };
