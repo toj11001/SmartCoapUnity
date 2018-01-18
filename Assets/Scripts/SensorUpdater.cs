@@ -27,7 +27,7 @@ public class SensorUpdater : MonoBehaviour {
         {
             uri = coapManager.GetUri("147.83.118.80", "light");
             coapManager.DoGet(uri);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(6);
         }      
     }
 
@@ -40,7 +40,7 @@ public class SensorUpdater : MonoBehaviour {
         {
             uri = coapManager.GetUri("147.83.118.80", "temperature");
             coapManager.DoGet(uri);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(6);
         }
     }
 

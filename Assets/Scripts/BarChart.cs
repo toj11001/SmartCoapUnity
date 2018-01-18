@@ -41,7 +41,7 @@ public class BarChart : MonoBehaviour {
             // DisplayGraph(testArray, p);
         }
         //StartCoroutine (waitTimeSec (1));
-        //StartCoroutine(loopExecutor());
+        StartCoroutine(loopExecutor());
     }
 
 	private IEnumerator waitTimeSec (int _s){
