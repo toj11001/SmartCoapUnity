@@ -21,23 +21,24 @@ public class BarChart : MonoBehaviour {
     float ChartHeight;
 
 	void Start () {
-		ChartHeight = Screen.height + GetComponent<RectTransform> ().sizeDelta.y;
+        ChartHeight = Screen.height + GetComponent<RectTransform>().sizeDelta.y;
         //Display the graph
-        if (label == "T") //check whether we are in the temperature bar graph scene
+        if (T) //check whether we are in the temperature bar graph scene
         {
-			T = true;
+            T = true;
             p = Singleton.GetInstance().LastTemperaturePointer + 1;
             DisplayGraph(Singleton.GetInstance().TemperatureStorage, p);
             // DisplayGraph(testArray, p);
         }
-		else
+        else
         {
-			T = false;
+            T = false;
             p = Singleton.GetInstance().LastLightPointer + 1;
             DisplayGraph(Singleton.GetInstance().LightStorage, p);
             // DisplayGraph(testArray, p);
-        } 
-		StartCoroutine (waitTimeSec (1));
+        }
+        //StartCoroutine (waitTimeSec (1));
+        StartCoroutine(loopExecutor());
     }
 
 	private IEnumerator waitTimeSec (int _s){
@@ -60,6 +61,47 @@ public class BarChart : MonoBehaviour {
 		rt.sizeDelta = new Vector2 (rt.sizeDelta.x, ChartHeight * normalizeVal);
 		//StartCoroutine(waitTimeSec(6));
 	}
+
+    private IEnumerator loopExecutor()
+    {
+        bool newUpdate = false;
+        ChartHeight = Screen.height + GetComponent<RectTransform>().sizeDelta.y;
+        //Display the graph
+        if (T) //check whether we are in the temperature bar graph scene
+        {
+            T = true;
+            p = Singleton.GetInstance().LastTemperaturePointer + 1;
+            DisplayGraph(Singleton.GetInstance().TemperatureStorage, p);
+            // DisplayGraph(testArray, p);
+        }
+        else
+        {
+            T = false;
+            p = Singleton.GetInstance().LastLightPointer + 1;
+            DisplayGraph(Singleton.GetInstance().LightStorage, p);
+            // DisplayGraph(testArray, p);
+        }
+        for (; ; )
+        {
+            if (T) //Check if there is an update
+            {
+                newUpdate = Singleton.GetInstance().isTemperatureUpdated;
+                if (newUpdate)
+                {
+                    Singleton.GetInstance().isTemperatureUpdated = false;
+                }
+            }
+            else
+            {
+                newUpdate = Singleton.GetInstance().isLightUpdated;
+                if (newUpdate)
+                {
+                    Singleton.GetInstance().isLightUpdated = false;
+                }
+            }
+            yield return new WaitForSeconds(0.5f); // this has to go faster than Sensor Updates
+        }
+    }
 
     void DisplayGraph(int[] vals, int initialPointer){
         int p = 0;
