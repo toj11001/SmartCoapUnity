@@ -29,14 +29,14 @@ public class BarChart : MonoBehaviour {
         if (label == "T" ) //check whether we are in the temperature bar graph scene
         {
             T = true;
-            p = Singleton.GetInstance().LastTemperaturePointer + 1;
+            p = Singleton.GetInstance().LastTemperaturePointer;
             DisplayGraph(Singleton.GetInstance().TemperatureStorage, p);
             // DisplayGraph(testArray, p);
         }
         else
         {
             T = false;
-            p = Singleton.GetInstance().LastLightPointer + 1;
+            p = Singleton.GetInstance().LastLightPointer;
             DisplayGraph(Singleton.GetInstance().LightStorage, p);
             // DisplayGraph(testArray, p);
         }
