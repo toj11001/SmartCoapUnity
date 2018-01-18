@@ -5,14 +5,16 @@ using UnityEngine.UI;
 using System.Linq;
 
 public class BarChart : MonoBehaviour {
+    
+    [SerializeField]
+    private Text tester;
 
-	public Bar barPrefab;
+    public Bar barPrefab;
 	public int[] InputValues;
 	List<Bar> bars = new List<Bar>(); //List to store the Bars
 	public string[] labels;	//Input labels
 	public Color[] colors; 	//Input Colors
 	public string label;    //find out which scene runs
-
     private const int maxVal = 50;
 
     private int[] testArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -24,7 +26,7 @@ public class BarChart : MonoBehaviour {
 	void Start () {
         ChartHeight = Screen.height + GetComponent<RectTransform>().sizeDelta.y;
         //Display the graph
-        if (T) //check whether we are in the temperature bar graph scene
+        if (label == "T" ) //check whether we are in the temperature bar graph scene
         {
             T = true;
             p = Singleton.GetInstance().LastTemperaturePointer + 1;
@@ -39,7 +41,7 @@ public class BarChart : MonoBehaviour {
             // DisplayGraph(testArray, p);
         }
         //StartCoroutine (waitTimeSec (1));
-        StartCoroutine(loopExecutor());
+        //StartCoroutine(loopExecutor());
     }
 
 	private IEnumerator waitTimeSec (int _s){
@@ -66,24 +68,24 @@ public class BarChart : MonoBehaviour {
     private IEnumerator loopExecutor()
     {
         float normalizedValue;
-        int ptr, updatedValue;
+        int ptr, updatedValue = -1;
         bool newUpdate = false;
-        ChartHeight = Screen.height + GetComponent<RectTransform>().sizeDelta.y;
-        //Display the graph
-        if (T) //check whether we are in the temperature bar graph scene
-        {
-            T = true;
-            p = Singleton.GetInstance().LastTemperaturePointer + 1;
-            DisplayGraph(Singleton.GetInstance().TemperatureStorage, p);
-            // DisplayGraph(testArray, p);
-        }
-        else
-        {
-            T = false;
-            p = Singleton.GetInstance().LastLightPointer + 1;
-            DisplayGraph(Singleton.GetInstance().LightStorage, p);
-            // DisplayGraph(testArray, p);
-        }
+        //ChartHeight = Screen.height + GetComponent<RectTransform>().sizeDelta.y;
+        ////Display the graph
+        //if (T) //check whether we are in the temperature bar graph scene
+        //{
+        //    T = true;
+        //    p = Singleton.GetInstance().LastTemperaturePointer + 1;
+        //    DisplayGraph(Singleton.GetInstance().TemperatureStorage, p);
+        //    // DisplayGraph(testArray, p);
+        //}
+        //else
+        //{
+        //    T = false;
+        //    p = Singleton.GetInstance().LastLightPointer + 1;
+        //    DisplayGraph(Singleton.GetInstance().LightStorage, p);
+        //    // DisplayGraph(testArray, p);
+        //}
         for (; ; )
         {
             if (T) //Check if there is an update
@@ -127,7 +129,7 @@ public class BarChart : MonoBehaviour {
             {
                 //Nothing to update
             }
-            
+            tester.text = updatedValue.ToString();
             yield return new WaitForSeconds(0.1f); // this has to go faster than Sensor Updates
         }
     }
