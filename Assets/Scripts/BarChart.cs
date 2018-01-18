@@ -17,6 +17,7 @@ public class BarChart : MonoBehaviour {
 	private int p = 0;
 	private int index = 0;
 	private int maxVal;
+	private bool T; 	//boolean to check whether temp or light sensor
     float ChartHeight;
 
 	void Start () {
@@ -24,12 +25,14 @@ public class BarChart : MonoBehaviour {
         //Display the graph
         if (label == "T") //check whether we are in the temperature bar graph scene
         {
+			T = True;
             p = Singleton.GetInstance().LastTemperaturePointer + 1;
             //DisplayGraph(Singleton.GetInstance().TemperatureStorage, p);
             DisplayGraph(testArray, p);
         }
 		else
         {
+			T = False;
             p = Singleton.GetInstance().LastLightPointer + 1;
             //DisplayGraph(Singleton.GetInstance().LightStorage, p);
             DisplayGraph(testArray, p);
@@ -38,26 +41,25 @@ public class BarChart : MonoBehaviour {
     }
 
 	private IEnumerator waitTimeSec (int _s){
+		int normalizeVal, ptr;
 		yield return new WaitForSeconds(_s); //wait _s sec
-		if (index < maxVal)
-			index++;
-		else
-			index = 0;
-		bars[5].barValue.text = index.ToString ();
-		bars[9].barValue.text = index.ToString ();
 
-		//resize bar
-//		RectTransform rt = newBar.bar.GetComponent<RectTransform> ();
-//		float normalizeVal = (float)vals [p] / (float)maxVal;
-//		rt.sizeDelta = new Vector2 (rt.sizeDelta.x, index);
-
-		RectTransform rt = bars[5].bar.GetComponent<RectTransform> ();
-		float normalizeVal = (float)index / (float)maxVal;
+		//update the latest element
+		//Checker whether temp or light sensor and normalize value
+		if (T){
+			ptr = Singleton.GetInstance().LastTemperaturePointer
+			normalizeVal = (float)Singleton.GetInstance().TemperatureStorage[ptr] / (float)maxVal;
+		}
+		else{
+			ptr = Singleton.GetInstance().LastLightPointer;
+			normalizeVal = (float)Singleton.GetInstance().LightStorage[ptr]] / (float)maxVal;
+		}
+		
+		RectTransform rt = bars[ptr].bar.GetComponent<RectTransform> ();
 		rt.sizeDelta = new Vector2 (rt.sizeDelta.x, ChartHeight * normalizeVal);
-		RectTransform rt9 = bars[9].bar.GetComponent<RectTransform> ();
-		normalizeVal = (float)index  / (float)maxVal;
-		rt9.sizeDelta = new Vector2 (rt.sizeDelta.x, ChartHeight * normalizeVal);
-
+		// RectTransform rt9 = bars[ptr].bar.GetComponent<RectTransform> ();
+		// normalizeVal = (float)index  / (float)maxVal;
+		// rt9.sizeDelta = new Vector2 (rt.sizeDelta.x, ChartHeight * normalizeVal);
 		StartCoroutine(waitTimeSec(6));
 	}
 
