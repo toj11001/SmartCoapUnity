@@ -25,14 +25,14 @@ public class BarChart : MonoBehaviour {
         //Display the graph
         if (label == "T") //check whether we are in the temperature bar graph scene
         {
-			T = True;
+			T = true;
             p = Singleton.GetInstance().LastTemperaturePointer + 1;
             DisplayGraph(Singleton.GetInstance().TemperatureStorage, p);
             // DisplayGraph(testArray, p);
         }
 		else
         {
-			T = False;
+			T = false;
             p = Singleton.GetInstance().LastLightPointer + 1;
             DisplayGraph(Singleton.GetInstance().LightStorage, p);
             // DisplayGraph(testArray, p);
@@ -41,18 +41,19 @@ public class BarChart : MonoBehaviour {
     }
 
 	private IEnumerator waitTimeSec (int _s){
-		int normalizeVal, ptr;
+		float normalizeVal;
+		int ptr;
 		yield return new WaitForSeconds(_s); //wait _s sec
 
 		//update the latest element
 		//Checker whether temp or light sensor and normalize value
 		if (T){
-			ptr = Singleton.GetInstance().LastTemperaturePointer
+			ptr = Singleton.GetInstance ().LastTemperaturePointer;
 			normalizeVal = (float)Singleton.GetInstance().TemperatureStorage[ptr] / (float)maxVal;
 		}
 		else{
 			ptr = Singleton.GetInstance().LastLightPointer;
-			normalizeVal = (float)Singleton.GetInstance().LightStorage[ptr]] / (float)maxVal;
+			normalizeVal = (float)Singleton.GetInstance().LightStorage[ptr] / (float)maxVal;
 		}
 		
 		RectTransform rt = bars[ptr].bar.GetComponent<RectTransform> ();
