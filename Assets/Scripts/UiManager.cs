@@ -82,6 +82,7 @@ public class UiManager : MonoBehaviour
             Singleton.GetInstance().LightStorage[i] = int.Parse(e.Data);
             i = (i + 1) % 10;
             Singleton.GetInstance().LastLightPointer = i;
+            Singleton.GetInstance().isLightUpdated = true;
             Debug.Log(Singleton.GetInstance().LastLightPointer);
             foreach (var item in Singleton.GetInstance().LightStorage)
             {
@@ -95,6 +96,7 @@ public class UiManager : MonoBehaviour
             Singleton.GetInstance().TemperatureStorage[j] = int.Parse(e.Data);
             j = (j + 1) % 10;
             Singleton.GetInstance().LastTemperaturePointer = j;
+            Singleton.GetInstance().isTemperatureUpdated = true;
             Debug.Log(Singleton.GetInstance().LastTemperaturePointer);
             foreach (var item in Singleton.GetInstance().TemperatureStorage)
             {
