@@ -27,15 +27,15 @@ public class BarChart : MonoBehaviour {
         {
 			T = True;
             p = Singleton.GetInstance().LastTemperaturePointer + 1;
-            //DisplayGraph(Singleton.GetInstance().TemperatureStorage, p);
-            DisplayGraph(testArray, p);
+            DisplayGraph(Singleton.GetInstance().TemperatureStorage, p);
+            // DisplayGraph(testArray, p);
         }
 		else
         {
 			T = False;
             p = Singleton.GetInstance().LastLightPointer + 1;
-            //DisplayGraph(Singleton.GetInstance().LightStorage, p);
-            DisplayGraph(testArray, p);
+            DisplayGraph(Singleton.GetInstance().LightStorage, p);
+            // DisplayGraph(testArray, p);
         }
 		StartCoroutine (waitTimeSec (6));
     }
@@ -57,9 +57,6 @@ public class BarChart : MonoBehaviour {
 		
 		RectTransform rt = bars[ptr].bar.GetComponent<RectTransform> ();
 		rt.sizeDelta = new Vector2 (rt.sizeDelta.x, ChartHeight * normalizeVal);
-		// RectTransform rt9 = bars[ptr].bar.GetComponent<RectTransform> ();
-		// normalizeVal = (float)index  / (float)maxVal;
-		// rt9.sizeDelta = new Vector2 (rt.sizeDelta.x, ChartHeight * normalizeVal);
 		StartCoroutine(waitTimeSec(6));
 	}
 
