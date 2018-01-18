@@ -20,10 +20,16 @@ public class UiManager : MonoBehaviour
     private Text label;
 
     [SerializeField]
-    private Text label_temp;
+    private Text labelTemp;
 
     [SerializeField]
-    private Text label_light;
+    private Text labelLight;
+
+    [SerializeField]
+    private Text arrayTemp;
+
+    [SerializeField]
+    private Text arrayLight;
 
 
 
@@ -78,7 +84,7 @@ public class UiManager : MonoBehaviour
 
         if (e.Resource == "light")
         {
-            label_light.text = e.Data;
+            labelLight.text = e.Data;
             Singleton.GetInstance().LightStorage[i] = int.Parse(e.Data);
             i = (i + 1) % 10;
             Singleton.GetInstance().LastLightPointer = i;
@@ -88,11 +94,11 @@ public class UiManager : MonoBehaviour
             {
                 line += item.ToString() + ", ";
             }
-            label.text = line;
+            arrayLight.text = line;
         }
         else if (e.Resource == "temperature")
         {
-            label_temp.text = e.Data;
+            labelTemp.text = e.Data;
             Singleton.GetInstance().TemperatureStorage[j] = int.Parse(e.Data);
             j = (j + 1) % 10;
             Singleton.GetInstance().LastTemperaturePointer = j;
@@ -102,7 +108,7 @@ public class UiManager : MonoBehaviour
             {
                 line += item.ToString() + ", ";
             }
-            label.text = line;
+            arrayTemp.text = line;
         }
         else
         {
