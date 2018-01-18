@@ -32,8 +32,8 @@ public class UiManager : MonoBehaviour
     void Start()
 	{
         coapManager.ResponseReceivedHandler += ResponseReceived;
-        Singleton.GetInstance().LightStorage = new int[10];
-        Singleton.GetInstance().TemperatureStorage = new int[10];
+        //Singleton.GetInstance().LightStorage = new int[10];
+        //Singleton.GetInstance().TemperatureStorage = new int[10];
         label.text = "Scene Init";
     }
 
