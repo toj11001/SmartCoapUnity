@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ButtonStart : MonoBehaviour {
 
 	public void Change2Light(){
-		SceneManager.LoadScene ("_scene");
+		SceneManager.LoadScene ("LightChart");
 	}
 	public void Change2Temp(){
 		SceneManager.LoadScene ("TempChart");
