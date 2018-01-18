@@ -20,10 +20,16 @@ public class UiManager : MonoBehaviour
     private Text label;
 
     [SerializeField]
-    private Text label_temp;
+    private Text labelTemp;
 
     [SerializeField]
-    private Text label_light;
+    private Text labelLight;
+
+    [SerializeField]
+    private Text arrayTemp;
+
+    [SerializeField]
+    private Text arrayLight;
 
 
 
@@ -32,8 +38,8 @@ public class UiManager : MonoBehaviour
     void Start()
 	{
         coapManager.ResponseReceivedHandler += ResponseReceived;
-        Singleton.GetInstance().LightStorage = new int[10];
-        Singleton.GetInstance().TemperatureStorage = new int[10];
+        //Singleton.GetInstance().LightStorage = new int[10];
+        //Singleton.GetInstance().TemperatureStorage = new int[10];
         label.text = "Scene Init";
     }
 
@@ -78,29 +84,31 @@ public class UiManager : MonoBehaviour
 
         if (e.Resource == "light")
         {
-            label_light.text = e.Data;
+            labelLight.text = e.Data;
             Singleton.GetInstance().LightStorage[i] = int.Parse(e.Data);
             i = (i + 1) % 10;
             Singleton.GetInstance().LastLightPointer = i;
+            Singleton.GetInstance().isLightUpdated = true;
             Debug.Log(Singleton.GetInstance().LastLightPointer);
             foreach (var item in Singleton.GetInstance().LightStorage)
             {
                 line += item.ToString() + ", ";
             }
-            label.text = line;
+            arrayLight.text = line;
         }
         else if (e.Resource == "temperature")
         {
-            label_temp.text = e.Data;
+            labelTemp.text = e.Data;
             Singleton.GetInstance().TemperatureStorage[j] = int.Parse(e.Data);
             j = (j + 1) % 10;
             Singleton.GetInstance().LastTemperaturePointer = j;
+            Singleton.GetInstance().isTemperatureUpdated = true;
             Debug.Log(Singleton.GetInstance().LastTemperaturePointer);
             foreach (var item in Singleton.GetInstance().TemperatureStorage)
             {
                 line += item.ToString() + ", ";
             }
-            label.text = line;
+            arrayTemp.text = line;
         }
         else
         {

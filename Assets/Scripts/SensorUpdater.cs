@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class SensorTest : MonoBehaviour {
+public class SensorUpdater : MonoBehaviour {
 
 	//public GameObject label;
 
@@ -13,13 +13,13 @@ public class SensorTest : MonoBehaviour {
     void Start () {
 
         //Add code to start the Service:TestLight that will test light sensor value
-        StartCoroutine("TestLight");
-        StartCoroutine("TestTemperature");
+        StartCoroutine("UpdateLight");
+        StartCoroutine("UpdateTemperature");
 
     }
 
 
-	public IEnumerator TestLight()
+	public IEnumerator UpdateLight()
     {
         string uri;
         yield return new WaitForSeconds(0.5f); // Check if Responses are colliding -> CONFIRMED
@@ -27,11 +27,11 @@ public class SensorTest : MonoBehaviour {
         {
             uri = coapManager.GetUri("147.83.118.80", "light");
             coapManager.DoGet(uri);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(6);
         }      
     }
 
-    public IEnumerator TestTemperature()
+    public IEnumerator UpdateTemperature()
     {
         //This method executes forever
         //Every X seconds send a Request to the coap server for the light service
@@ -40,7 +40,7 @@ public class SensorTest : MonoBehaviour {
         {
             uri = coapManager.GetUri("147.83.118.80", "temperature");
             coapManager.DoGet(uri);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(6);
         }
     }
 
