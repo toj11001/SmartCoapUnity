@@ -36,7 +36,7 @@ public class BarChart : MonoBehaviour {
             p = Singleton.GetInstance().LastLightPointer + 1;
             DisplayGraph(Singleton.GetInstance().LightStorage, p);
             // DisplayGraph(testArray, p);
-        }
+        } 
 		StartCoroutine (waitTimeSec (6));
     }
 
@@ -58,7 +58,7 @@ public class BarChart : MonoBehaviour {
 		
 		RectTransform rt = bars[ptr].bar.GetComponent<RectTransform> ();
 		rt.sizeDelta = new Vector2 (rt.sizeDelta.x, ChartHeight * normalizeVal);
-		StartCoroutine(waitTimeSec(6));
+		//StartCoroutine(waitTimeSec(6));
 	}
 
     void DisplayGraph(int[] vals, int initialPointer){
@@ -87,12 +87,12 @@ public class BarChart : MonoBehaviour {
 //			} else {
 //				newBar.label.text = labels[i];
 //			}
-			newBar.label.text	= label + (i+1).ToString();
+			newBar.label.text	= label + (p+1).ToString();
 
              
 
             //set value label
-            newBar.barValue.text = vals[i].ToString();
+            newBar.barValue.text = vals[p].ToString();
 			if (rt.sizeDelta.y < 30f) {
 				newBar.barValue.GetComponent<RectTransform>().pivot = new Vector2 (0.5f, 0f);
 				newBar.barValue.GetComponent<RectTransform> ().anchoredPosition = Vector2.zero;  
