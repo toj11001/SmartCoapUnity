@@ -6,8 +6,8 @@ using System.Linq;
 
 public class BarChart : MonoBehaviour {
     
-    [SerializeField]
-    private Text tester;
+    //[SerializeField]
+    //private Text tester;
 
     public Bar barPrefab;
 	public int[] InputValues;
@@ -15,7 +15,7 @@ public class BarChart : MonoBehaviour {
 	public string[] labels;	//Input labels
 	public Color[] colors; 	//Input Colors
 	public string label;    //find out which scene runs
-    private const int maxVal = 50;
+    private const int maxVal = 30;
 
     private int[] testArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	private int p = 0;
@@ -40,11 +40,11 @@ public class BarChart : MonoBehaviour {
             DisplayGraph(Singleton.GetInstance().LightStorage, p);
             // DisplayGraph(testArray, p);
         }
-        //StartCoroutine (waitTimeSec (1));
-        StartCoroutine(loopExecutor());
+        //StartCoroutine (waitTimeSec (1)); //Not working
+        //StartCoroutine(loopExecutor()); //Not working
     }
 
-	private IEnumerator waitTimeSec (int _s){
+    private IEnumerator waitTimeSec (int _s){
 		float normalizeVal;
 		int ptr;
 		yield return new WaitForSeconds(_s); //wait _s sec
@@ -129,7 +129,7 @@ public class BarChart : MonoBehaviour {
             {
                 //Nothing to update
             }
-            tester.text = updatedValue.ToString();
+            //tester.text = updatedValue.ToString();
             yield return new WaitForSeconds(0.1f); // this has to go faster than Sensor Updates
         }
     }
