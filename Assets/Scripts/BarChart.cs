@@ -14,11 +14,13 @@ public class BarChart : MonoBehaviour {
 	public string label;	//find out which scene runs
     private int[] testArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
+	private int p = 0;
+	private int index = 0;
+	private int maxVal;
     float ChartHeight;
 
 	void Start () {
 		ChartHeight = Screen.height + GetComponent<RectTransform> ().sizeDelta.y;
-        int p = 0;
         //Display the graph
         if (label == "T") //check whether we are in the temperature bar graph scene
         {
@@ -32,16 +34,29 @@ public class BarChart : MonoBehaviour {
             //DisplayGraph(Singleton.GetInstance().LightStorage, p);
             DisplayGraph(testArray, p);
         }
-
+		StartCoroutine (waitTimeSec (1));
     }
-//	private IEnumerator Update()
-//    {
-//		yield return new WaitForSeconds(6); //wait 6 sec   
-//    }
+
+	private IEnumerator waitTimeSec (int _s){
+		yield return new WaitForSeconds(_s); //wait _s sec
+		bars[9].barValue.text = index++.ToString ();
+		bars[5].barValue.text = index++.ToString ();
+
+		//resize bar
+		RectTransform rt = bars[9].GetComponent<RectTransform> ();
+//		float normalizeVal = (float)vals [p] / (float)maxVal;
+//		float normalizeVal = (float)index / (float)maxVal;
+		rt.sizeDelta = new Vector2 (rt.sizeDelta.x, index);
+
+//		RectTransform rt2 = bars[9].GetComponent<RectTransform> ();
+//		rt2.sizeDelta = new Vector2 (rt2.sizeDelta.x, index);
+
+		StartCoroutine(waitTimeSec(3));
+	}
 
     void DisplayGraph(int[] vals, int initialPointer){
         int p = 0;
-		int maxVal = vals.Max ();
+		maxVal = vals.Max ();
 
 		for (int i = 0; i < vals.Length; i++) {
             p = (i + initialPointer) % vals.Length;
@@ -75,6 +90,9 @@ public class BarChart : MonoBehaviour {
 				newBar.barValue.GetComponent<RectTransform>().pivot = new Vector2 (0.5f, 0f);
 				newBar.barValue.GetComponent<RectTransform> ().anchoredPosition = Vector2.zero;  
 			}
+
+			// add newBar to global List.
+			bars.Add (newBar);
 		}
 	}
 }
