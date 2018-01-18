@@ -34,24 +34,31 @@ public class BarChart : MonoBehaviour {
             //DisplayGraph(Singleton.GetInstance().LightStorage, p);
             DisplayGraph(testArray, p);
         }
-		StartCoroutine (waitTimeSec (1));
+		StartCoroutine (waitTimeSec (6));
     }
 
 	private IEnumerator waitTimeSec (int _s){
 		yield return new WaitForSeconds(_s); //wait _s sec
-		bars[9].barValue.text = index++.ToString ();
-		bars[5].barValue.text = index++.ToString ();
+		if (index < maxVal)
+			index++;
+		else
+			index = 0;
+		bars[5].barValue.text = index.ToString ();
+		bars[9].barValue.text = index.ToString ();
 
 		//resize bar
-		RectTransform rt = bars[9].GetComponent<RectTransform> ();
+//		RectTransform rt = newBar.bar.GetComponent<RectTransform> ();
 //		float normalizeVal = (float)vals [p] / (float)maxVal;
-//		float normalizeVal = (float)index / (float)maxVal;
-		rt.sizeDelta = new Vector2 (rt.sizeDelta.x, index);
+//		rt.sizeDelta = new Vector2 (rt.sizeDelta.x, index);
 
-//		RectTransform rt2 = bars[9].GetComponent<RectTransform> ();
-//		rt2.sizeDelta = new Vector2 (rt2.sizeDelta.x, index);
+		RectTransform rt = bars[5].bar.GetComponent<RectTransform> ();
+		float normalizeVal = (float)index / (float)maxVal;
+		rt.sizeDelta = new Vector2 (rt.sizeDelta.x, ChartHeight * normalizeVal);
+		RectTransform rt9 = bars[9].bar.GetComponent<RectTransform> ();
+		normalizeVal = (float)index  / (float)maxVal;
+		rt9.sizeDelta = new Vector2 (rt.sizeDelta.x, ChartHeight * normalizeVal);
 
-		StartCoroutine(waitTimeSec(3));
+		StartCoroutine(waitTimeSec(6));
 	}
 
     void DisplayGraph(int[] vals, int initialPointer){
