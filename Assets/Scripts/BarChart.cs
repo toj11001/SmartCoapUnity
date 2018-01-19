@@ -15,7 +15,7 @@ public class BarChart : MonoBehaviour {
 	public string[] labels;	//Input labels
 	public Color[] colors; 	//Input Colors
 	public string label;    //find out which scene runs
-    private const int maxVal = 30;
+    private int maxVal;
 
     private int[] testArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	private int p = 0;
@@ -136,7 +136,7 @@ public class BarChart : MonoBehaviour {
 
     void DisplayGraph(int[] vals, int initialPointer){
         int p = 0;
-		//maxVal = vals.Max ();
+		maxVal = vals.Max ();
 
 		for (int i = 0; i < vals.Length; i++) {
             p = (i + initialPointer) % vals.Length;
